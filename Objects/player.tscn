@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxxe1jgri3yrq"]
+
+[ext_resource type="Script" path="res://Scripts/FirstPersonMovement.gd" id="1_1vp54"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iv2w0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hu1dg"]
+radius = 0.511076
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94302, 0)
+script = ExtResource("1_1vp54")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_iv2w0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_hu1dg")
+
+[node name="PlayerPov" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481063, -0.50036)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq8r3jofpr8fu"]
+
+[ext_resource type="PackedScene" uid="uid://bxxe1jgri3yrq" path="res://Objects/player.tscn" id="1_ywhfs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikco8"]
+size = Vector3(30.7132, 0.001, 30.787)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_46qlb"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_ikco8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(15.376, 0, 0, 0, 15.376, 0, 0, 0, 15.376, 0, 0, 0)
+mesh = SubResource("PlaneMesh_46qlb")
+
+[node name="Player" parent="." instance=ExtResource("1_ywhfs")]
