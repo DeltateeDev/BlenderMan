@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq8r3jofpr8fu"]
+[gd_scene load_steps=8 format=3 uid="uid://dq8r3jofpr8fu"]
 
 [ext_resource type="PackedScene" uid="uid://bxxe1jgri3yrq" path="res://Objects/player.tscn" id="1_ywhfs"]
 
@@ -20,6 +20,8 @@ size = Vector3(30.7132, 0.001, 30.787)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_46qlb"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_x1wg0"]
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -40,3 +42,7 @@ transform = Transform3D(15.376, 0, 0, 0, 15.376, 0, 0, 0, 15.376, 0, 0, 0)
 mesh = SubResource("PlaneMesh_46qlb")
 
 [node name="Player" parent="." instance=ExtResource("1_ywhfs")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -11.9435, 0, 0, 0, 1, 0.19777, -0.0630777, -12.8893)
+mesh = SubResource("BoxMesh_x1wg0")

@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Neck/PlayerPOV
 
 @export var speed: int = 7
+@export var gravity: int = 15
+@export var jump_strength: int = 5
 @export var acceleration: int = 10
 @export var mouse_sensitivity: float = 0.0025
 
@@ -13,7 +15,7 @@ var move_direction: Vector3 = Vector3.ZERO
 func _ready():
 	pass
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 	
 func _unhandled_input(event: InputEvent):
@@ -31,6 +33,11 @@ func _unhandled_input(event: InputEvent):
 
 func handle_movement(delta):
 	move_direction = Vector3(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0, Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")).normalized().rotated(Vector3.UP, neck.rotation.y)
+	if !is_on_floor():
+		velocity.y -= gravity * delta
+	elif Input.is_action_pressed("jump"):
+		velocity.y = jump_strength
+	
 	velocity.x = lerp(velocity.x, move_direction.x * speed, acceleration * delta)
 	velocity.z = lerp(velocity.z, move_direction.z * speed, acceleration * delta)
 	
