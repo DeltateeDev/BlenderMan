@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq8r3jofpr8fu"]
+[gd_scene load_steps=9 format=3 uid="uid://dq8r3jofpr8fu"]
 
 [ext_resource type="PackedScene" uid="uid://bxxe1jgri3yrq" path="res://Objects/player.tscn" id="1_ywhfs"]
+[ext_resource type="PackedScene" uid="uid://dmpsk35klyeax" path="res://Objects/tree.tscn" id="2_fleva"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sq05n"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,9 +19,11 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_ikco8"]
 size = Vector3(30.7132, 0.001, 30.787)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_46qlb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5eirb"]
+albedo_color = Color(0.0509804, 0.239216, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_x1wg0"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_46qlb"]
+material = SubResource("StandardMaterial3D_5eirb")
 
 [node name="Main" type="Node3D"]
 
@@ -28,10 +31,16 @@ size = Vector3(30.7132, 0.001, 30.787)
 environment = SubResource("Environment_47q4w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.760905, 0.648864, 0, -0.648864, 0.760905, 0, 0, 0)
+light_color = Color(1, 1, 0, 1)
+light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 10.0
+directional_shadow_blend_splits = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
@@ -43,6 +52,19 @@ mesh = SubResource("PlaneMesh_46qlb")
 
 [node name="Player" parent="." instance=ExtResource("1_ywhfs")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -11.9435, 0, 0, 0, 1, 0.19777, -0.0630777, -12.8893)
-mesh = SubResource("BoxMesh_x1wg0")
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="Tree" parent="Trees" instance=ExtResource("2_fleva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.7187, 0.00249863, -47.8362)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("2_fleva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46872, 0.00249982, -7.32241)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("2_fleva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66167, 0.00249982, -7.64805)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("2_fleva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82903, 0.00249982, 5.3411)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("2_fleva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16579, 0.00249982, 5.89245)
