@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxxe1jgri3yrq"]
+[gd_scene load_steps=5 format=3 uid="uid://bxxe1jgri3yrq"]
 
 [ext_resource type="Script" path="res://Scripts/FirstPersonMovement.gd" id="1_1vp54"]
+[ext_resource type="Script" path="res://Scripts/Flashlight.gd" id="2_iu56h"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iv2w0"]
 
@@ -21,3 +22,10 @@ shape = SubResource("CapsuleShape3D_hu1dg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.571645, 0)
 
 [node name="PlayerPOV" type="Camera3D" parent="Neck"]
+
+[node name="Flashlight" type="SpotLight3D" parent="Neck/PlayerPOV"]
+light_energy = 6.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 7.56469
+script = ExtResource("2_iu56h")

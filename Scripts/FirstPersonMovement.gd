@@ -3,7 +3,8 @@ extends CharacterBody3D
 @onready var neck: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/PlayerPOV
 
-@export var speed: int = 7
+@export var speed: float = 1.5
+@export var sprint_speed: int = 2
 @export var gravity: int = 15
 @export var jump_strength: int = 5
 @export var acceleration: int = 10
