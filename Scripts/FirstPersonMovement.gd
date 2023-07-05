@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Neck/PlayerPOV
 
 @export var speed: float = 1.5
-@export var sprint_speed: int = 2
+@export var sprint_speed: int = 3
 @export var gravity: int = 15
 @export var jump_strength: int = 5
 @export var acceleration: int = 10
@@ -33,6 +33,10 @@ func _unhandled_input(event: InputEvent):
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func handle_movement(delta):
+	if Input.is_action_pressed("sprint"):
+		speed = sprint_speed
+	else:
+		speed = 1.5
 	move_direction = Vector3(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0, Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")).normalized().rotated(Vector3.UP, neck.rotation.y)
 	if !is_on_floor():
 		velocity.y -= gravity * delta
