@@ -14,7 +14,7 @@ var move_direction: Vector3 = Vector3.ZERO
 
 
 func _ready():
-	pass
+	Globals.player = self
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)

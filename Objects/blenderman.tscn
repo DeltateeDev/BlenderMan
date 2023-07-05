@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://nryincxjjx43"]
+
+[ext_resource type="Script" path="res://Scripts/Blenderman.gd" id="1_khimp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofn1l"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jkf1o"]
+material = SubResource("StandardMaterial3D_ofn1l")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yw2ac"]
+size = Vector3(1, 4.63292, 1)
+
+[node name="BlenderMan" type="StaticBody3D"]
+script = ExtResource("1_khimp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 4.67638, 0, 0, 0, 1, 0, 2.2232, 0)
+mesh = SubResource("BoxMesh_jkf1o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00782013, 2.23585, -0.00909138)
+shape = SubResource("BoxShape3D_yw2ac")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
